@@ -80,14 +80,19 @@ def check_log(loglines):
     return True
 
 
+def get_value(x):
+  if isinstance(x, dict):
+    return x.get("value")
+  return x
+
+
 def get_model_accuracy(loglines):
-    eval_target = {i.value for i in loglines if i.tag == 'eval_target'}
+    eval_target = {get_value(i.value) for i in loglines if i.tag == 'eval_target'}
     if len(eval_target) == 1:
         eval_target = eval_target.pop()
     else:
         print("Failed to extract eval target.")
         eval_target = None
-    print(eval_target)
 
     values = [0]
     for i in loglines:
