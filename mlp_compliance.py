@@ -132,6 +132,10 @@ def check_loglines_l2(loglines):
     general_l2_file = os.path.join(CONFIG_DIR, 'v0.5.0_level2.yaml')
     l2_check = configured_checks(loglines,  general_l2_file)
 
+    if not loglines:
+      print("No log lines detected.")
+      return False
+
     benchmark = loglines[0].benchmark
     benchmark_file = os.path.join(CONFIG_DIR, 'v0.5.0_l2_{}.yaml'.format(benchmark))
 
