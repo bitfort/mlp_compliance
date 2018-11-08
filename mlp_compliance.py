@@ -115,7 +115,6 @@ def get_model_accuracy(loglines):
     if isinstance(eval_target, dict):
         maxvalues = {}
         for k in eval_target.keys():
-            print(k, values, eval_target)
             temp = [d[k] for d in values]
             maxvalues[k] = max(temp)
         return maxvalues, eval_target
