@@ -107,9 +107,10 @@ def get_model_accuracy(loglines):
         if i.tag != 'eval_accuracy':
             continue
         else:
-            values.append(i.value["value"])
-  
-    # [ {"bbox" : , "mask": ..}, .., ]
+            try:
+                values.append(i.value["value"])
+            except:
+                pass
 
     if isinstance(eval_target, dict):
         maxvalues = {}
