@@ -11,3 +11,5 @@
 - AT_LEAST_ONE: model_hp_mf_dim
 - AT_LEAST_ONE: model_hp_mlp_layer_sizes
 
+- AT_LEAST_ONE: eval_size
+

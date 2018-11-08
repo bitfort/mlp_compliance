@@ -8,3 +8,6 @@
 - AT_LEAST_ONE: eval_hp_length_normalization_constant
 - AT_LEAST_ONE: eval_hp_length_normalization_factor
 - AT_LEAST_ONE: eval_hp_coverage_penalty_factor
+
+- AT_LEAST_ONE: eval_size
+

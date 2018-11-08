@@ -8,3 +8,5 @@
 - AT_LEAST_ONE: model_hp_shorcut_add
 - AT_LEAST_ONE: model_hp_resnet_topology
 
+- AT_LEAST_ONE: eval_size
+
