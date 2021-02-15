@@ -82,27 +82,44 @@ def check_log(loglines):
 
 def get_value(x):
   if isinstance(x, dict):
-    return x.get("value")
+      if "value" in x:
+          return x.get("value")
+      else:
+          return x
   return x
 
 
 def get_model_accuracy(loglines):
-    eval_target = {get_value(i.value) for i in loglines if i.tag == 'eval_target'}
-    if len(eval_target) == 1:
+    eval_target = [get_value(i.value) for i in loglines if i.tag == 'eval_target']
+    
+    if all(eval_target[0] == t for t in eval_target):
         eval_target = eval_target.pop()
     else:
         print("Failed to extract eval target.")
         eval_target = None
 
-    values = [0]
+    if isinstance(eval_target, dict):
+        values = [dict.fromkeys(eval_target, 0)]
+    else:
+        values = [0]
+
     for i in loglines:
         if i.tag != 'eval_accuracy':
             continue
-        try:
-            values.append(i.value["value"])
-        except:
-            pass
-    return max(values), eval_target
+        else:
+            try:
+                values.append(i.value["value"])
+            except:
+                pass
+
+    if isinstance(eval_target, dict):
+        maxvalues = {}
+        for k in eval_target.keys():
+            temp = [d[k] for d in values]
+            maxvalues[k] = max(temp)
+        return maxvalues, eval_target
+    else:
+        return max(values), eval_target
 
 
 def l1_check_file(filename):
