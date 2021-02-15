@@ -12,3 +12,6 @@
 - AT_LEAST_ONE: random_flip_probability
 - AT_LEAST_ONE: data_normalization_mean
 - AT_LEAST_ONE: data_normalization_std
+
+- AT_LEAST_ONE: eval_size
+
